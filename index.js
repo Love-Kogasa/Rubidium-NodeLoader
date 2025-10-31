@@ -23,7 +23,7 @@ const module = new Proxy(_module, {
   },
   get(self, key) {
     var {__module} = initPath()
-    return _nodeJsModuleStack[__module][key]
+    return key === "exports" ? _nodeJsModuleStack[__module] : _nodeJsModuleStack[__module][key]
   },
   apply(self, thisArg, args) {
     var {__module} = initPath()
