@@ -116,7 +116,7 @@ __但是我没钱做CDN也没人支持我啊__
 ```
 
 加载第三方库(同步方法，可用URL)
-```
+```html
 <script src="./lib.js"></script>
 <script src="./lib2.js" require="mod"></script>
 <script>

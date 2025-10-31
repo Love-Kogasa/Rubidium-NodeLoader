@@ -57,7 +57,7 @@ require.cache = _nodeJsModuleStack
 require.browser = {
   register( name, object ) {
     if(!object) {
-      for( let key in object ) this.register( key, object[key] )
+      for( let key in name ) this.register( key, name[key] )
       return;
     } else _nodeJsModuleStack[name] = object
   }
