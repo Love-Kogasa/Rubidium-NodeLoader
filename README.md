@@ -1,6 +1,6 @@
 **中文自述文件请往下滑)**
 # Rubidium NodeLoader
-`Rebidium => Rb => Require (node module in) browser`
+`Rebidium => Rb => Require (node module in) browser`  
 Rubidium • Node Module Loader  
 This project provides a frontend Node.js module loader, allowing you to use Node.js modules in the frontend.  
 *For development use only; stability is not guaranteed! Do not use in formal production environments.*
@@ -13,7 +13,7 @@ __But I don't have the funds to run a CDN, and no one is supporting me.__
 So, I developed this in half an evening to use certain Node.js libraries in my own small projects.
 
 ## Usage
-Load Rb and the standard library (recommended to use a CDN):
+Load Rb and the standard library:
 ```html
 <script src="nbnl.js"></script>
   <!-- index.js in this repository -->
@@ -100,7 +100,7 @@ __但是我没钱做CDN也没人支持我啊__
 因此我用半晚上开发了这个，用来在自己的小型项目中使用部分Nodejs库  
 
 ## Usage
-加载Rb和标准库(建议使用cdn)
+加载Rb和标准库
 ```html
 <script src="nbnl.js"></script>
   <!-- 本仓库中的index.js -->

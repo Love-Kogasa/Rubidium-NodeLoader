@@ -1,6 +1,6 @@
 {
   "name": "rbnl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tiny front-end node module loader",
   "keywords": [
     "node",
@@ -24,9 +24,10 @@
   },
   "dependencies": {
     "browserify-fs": "^1.0.0",
+    "browserify-zlib": "^0.2.0",
     "http-browserify": "^1.7.0",
     "https-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0"
-  },
-  "devDependencies": {}
+    "os-browserify": "^0.3.0",
+    "vm-browserify": "^1.1.2"
+  }
 }
