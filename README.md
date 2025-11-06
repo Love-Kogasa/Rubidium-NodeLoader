@@ -1,4 +1,5 @@
 **中文自述文件请往下滑)**
+Demo: https://love-kogasa.github.io/Rubidium-NodeLoader/  
 # Rubidium NodeLoader
 `Rebidium => Rb => Require (node module in) browser`  
 Rubidium • Node Module Loader  
