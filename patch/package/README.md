@@ -68,7 +68,7 @@ pkg.require("/package.json")
 // 通过设置包装内模块实现一些包装内nodejs接口
 // 一个为包装自定义fs模块的方法)
 // 包装内程序需要用到readFileSync函数
-pkg.submodule("fs", {
+pkg.write("fs", {
   readFileSync: pkg.require
   // TIP: 如果直接使用require模拟文件读取的话，./xxx和xxx是不同的，前者会从./xxx获取，后者则会试图通过/node_modules/xxx/index.js获取模块
 })

@@ -6,21 +6,28 @@
     // 设计遗留问题(
     return {
       require: localRequire,
-      submodule: (name, module) => (cache["/node_modules/" + name] = module),
-      run: () => localRequire($path.join("/", package().main)),
+      subModule: write, write: write,
+      run: () => localRequire($path.join("/", package().main || "index.js")),
       content: pkg,
       share, package, shareCache: share,
     }
     function package(dir = "/") {
       var path = $path.join(dir, "package.json")
-      return pkg[path] ? localRequire(path) : {main: "index.js"}
+      return pkg[path] ? localRequire(path) : {}
     }
-    function localRequire(name, dir="/") {
+    function getPath(name, dir="/") {
       var path = name
       if(parseInt(name[0], 36) + 1) path = "/node_modules/" + path
-      if(!name.includes("/")) path = $path.join(path, package(path).main)
+      if(!name.includes("/")) path = $path.join(path, package(path).main || "index.js")
       if(!$path.extname(path)) path += ".js"
-      path = path[0] === "." ? $path.join(path, dir) : path
+      return path[0] === "." ? $path.join(path, dir) : path
+    }
+    function write(path, module) {
+      path = getPath(path)
+      return cache[path] = module
+    }
+    function localRequire(name, dir="/") {
+      var path = getPath(name, dir)
       return cache[path] || ((cache[path] = load(path)) || require(name))
     }
     function share(onlyModule = true, to = window) {
@@ -35,13 +42,13 @@
       return shared
     }
     function runner(code, path) {
-      var module = {module: {exports: {}}};
+      var module = {module: {exports: {}}}
+      var require = (name) => localRequire(name, path)
+      require.cache = cache;
       (function(__dirname, __pathname, require, module) {
         exports = module.exports
         eval(code)
-      })($path.dirname(path), $path.basename(path),
-        (name) => localRequire(name, path),
-      module.module)
+      })($path.dirname(path), $path.basename(path), require, module.module)
       module = module.module
       return typeof module === "object" ?
         (Object.keys(module).length === 1 ? module.exports : module)
