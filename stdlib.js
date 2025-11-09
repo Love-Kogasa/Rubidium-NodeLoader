@@ -17,7 +17,8 @@ window.require.browser.register({
   http: require( "http-browserify" ),
   https: require( "https-browserify" ),
   zlib: require( "browserify-zlib" ),
-  vm: require( "vm-browserify" )
+  vm: require( "vm-browserify" ),
+  constants: require( "constants" )
 })
 window.Buffer = Buffer
 window.process = process

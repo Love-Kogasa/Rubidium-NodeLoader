@@ -20,7 +20,7 @@
       if(parseInt(name[0], 36) + 1) path = "/node_modules/" + path
       if(!name.includes("/")) path = $path.join(path, package(path).main || "index.js")
       if(!$path.extname(path)) path += ".js"
-      return path[0] === "." ? $path.join(path, dir) : path
+      return path[0] === "." ? $path.join(dir, path) : path
     }
     function write(path, module) {
       path = getPath(path)
@@ -28,7 +28,7 @@
     }
     function localRequire(name, dir="/") {
       var path = getPath(name, dir)
-      return cache[path] || ((cache[path] = load(path)) || require(name))
+      return cache[path] || (load(path) || require(name))
     }
     function share(onlyModule = true, to = window) {
       var shared = Object.keys(cache),
@@ -42,17 +42,19 @@
       return shared
     }
     function runner(code, path) {
-      var module = {module: {exports: {}}}
-      var require = (name) => localRequire(name, path)
+      var module = {}
+      cache[path] = {}
+      Object.defineProperty(module, "exports", {
+        get() {return cache[path]},
+        set(v) {return cache[path] = v}
+      })
+      var dirname = $path.dirname(path)
+      var require = (name) => localRequire(name, dirname)
       require.cache = cache;
-      (function(__dirname, __pathname, require, module) {
-        exports = module.exports
+      (function(__dirname, __pathname, require, module, exports) {
         eval(code)
-      })($path.dirname(path), $path.basename(path), require, module.module)
-      module = module.module
-      return typeof module === "object" ?
-        (Object.keys(module).length === 1 ? module.exports : module)
-      : module
+      })(dirname, path, require, module, module.exports)
+      return cache[path]
     }
     function load(path) {
       var data = pkg[path]
@@ -61,9 +63,9 @@
       if([".js",".ejs"].includes($path.extname(path))) {
         return runner(data.toString(), path)
       } else if($path.extname(path) === ".json") {
-        return JSON.parse(data.toString())
+        return (cache[path] = JSON.parse(data.toString()))
       } else {
-        return data
+        return (cache[path] = data)
       }
     }
   }
