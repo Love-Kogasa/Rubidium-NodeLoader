@@ -48,7 +48,7 @@ var require = ( moduleName ) => {
     var {__module} = initPath()
     return _nodeJsModuleStack[
       new URL(moduleName, __module)
-    ]
+    ] || _nodeJsModuleStack[ moduleName ]
   }
 }
 

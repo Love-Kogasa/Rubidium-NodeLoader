@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Rubidium-NodeLoader Demo</title>
     <meta name="description" content="A tiny front-end node module loader.(< 1kB compressed，exclude stdlib)">
+    
     <script src="./node.js"></script>
     <script src="./stdlib.min.js"></script>
+    <!-- rubidium and node stdlib -->
+    
+    <script src="./patch/package/package.js"></script>
+    <script src="./patch/package/npm/npm-files.js"></script>
+    <script src="./patch/package/npm/npm.js"></script>
+    <!-- try load rubidium:package and rubidium:package.npm in sync way -->
+    
     <style>
       textarea, pre {
         width: 100%; height: 14em;
