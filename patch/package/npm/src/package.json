@@ -1,0 +1,10 @@
+{
+  "name": "rbnl-pkg.npm",
+  "dependencies": {
+    "node-tar.gz": "^1.0.0",
+    "stream-to-array": "^2.3.0"
+  },
+  "scripts": {
+    "build": "node build"
+  }
+}

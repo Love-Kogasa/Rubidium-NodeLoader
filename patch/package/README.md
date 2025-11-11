@@ -11,6 +11,9 @@ rubidium node-loader的补丁包
 
 * package仅主包非常小，且非常简单，方便开发，如果是做container则可能需要很多的依赖，很不方便处理
 
+## Sub Module
+- [rubidium\:package.npm](./npm/README.md) 向package中安装npm模块
+
 ## Usage
 (打包器暂无，不过很快就会有，因为包装所需要的结构非常简单，只是一个kv对象，如"/绝对路径": 内容)  
 rubidium\:package只是一个基础库，后面会出一些方便操作的快捷方法，如pkg内npm)
@@ -43,7 +46,7 @@ var xxx = require("xxx")
 ```
 
 共享模块(将包装引用cache处理后合并到另一个require.cache)
-```
+```js
 // 向模块栈共享
 pkg.share()
 // 请在共享前确保库被调用过并且成功写入cache
@@ -77,4 +80,3 @@ pkg.shareCache(true, pkg1)
 // pkg1也可以使用fs.readFileSync方法
 ```
 
-__敬请期待__
