@@ -29,9 +29,9 @@ class Npm {
   install(npmName, version) {
     if(npmName) {
       var name = npmName
-      if(npmName.includes("@")) {
+      if(npmName.includes("@") && npmName[0] !== "@") {
         [name, version] = npmName.split("@")
-      } else if(version && version[0] === "~") version = version.slice(1)
+      } else if(version && ["~", "^"].includes(version[0])) version = version.slice(1)
        return this._install(name, version)
     } else {
       return (async () => {
