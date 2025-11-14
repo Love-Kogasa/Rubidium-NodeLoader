@@ -13,6 +13,7 @@ rubidium node-loader的补丁包
 
 ## Sub Module
 - [rubidium\:package.npm](./npm/README.md) 向package中安装npm模块
+- [rubidium\:package.zip](./zip/README.md) 从Zip加载Package
 
 ## Usage
 (打包器暂无，不过很快就会有，因为包装所需要的结构非常简单，只是一个kv对象，如"/绝对路径": 内容)  
