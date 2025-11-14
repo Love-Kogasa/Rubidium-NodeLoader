@@ -17,7 +17,7 @@
     }
     function getPath(name, dir="/") {
       var path = name
-      if(parseInt(name[0], 36) + 1) path = "/node_modules/" + path
+      if((parseInt(name[0], 36) + 1) || name[0] === "@") path = "/node_modules/" + path
       if(!name.includes("/")) path = $path.join(path, package(path).main || "index.js")
       if(!$path.extname(path)) path += ".js"
       return path[0] === "." ? $path.join(dir, path) : path

@@ -42,7 +42,7 @@ _module.exports = module
 window.exports = module
 
 var require = ( moduleName ) => {
-  if( parseInt(moduleName, 36) ) {
+  if( (parseInt(moduleName, 36) + 1) || moduleName[0] === "@" ) {
     return _nodeJsModuleStack[moduleName]
   } else {
     var {__module} = initPath()
