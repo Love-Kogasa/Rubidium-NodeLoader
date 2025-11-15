@@ -4,7 +4,7 @@ var output = document.getElementById("output")
 
 var _log = console.log
 window.console.log = (...str) => {
-  output.textContent += str.join(" ") + "\n"
+  output.textContent = str.join(" ") + "\n" + output.textContent
   return _log(...str)
 }
 
@@ -14,9 +14,9 @@ fetch(code.getAttribute("src"))
     code.textContent = script
     run.onclick = () => {
       output.textContent = ""
-      try { eval(script) } catch( err ){ 
-        console.log( err )
-      }
+      var start = performance.now()
+      try { eval(script) } catch( err ){ console.log( err ) }
+      console.log( "----- END: " + ((performance.now() - start) / 1000).toFixed(9) + "s -----" )
     }
   })
 .catch(console.log)
