@@ -6,15 +6,7 @@ var {__pathname, __dirname} = initPath()
 
 code.value = 
 `const app = require( "app" )
-const path = require( "path" )
-
-if(!__pathname) var {__pathname} = initPath()
-// In fact, you may need to initialize the path for each file once, if necessary
-
-app.log( "File already run at: " )
-app.log(
-  path.join( "/", path.basename( __pathname || "app.js" ) )
-)`
+app.log("I Love U")`
 run.onclick = () => {
   try {
     output.textContent = ""
