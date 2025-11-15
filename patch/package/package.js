@@ -1,15 +1,19 @@
 (function() {
   const $path = require( "path" )
   function create(pkg) {
-    var cache = {}
+    var cache = {}, localProcess = {...process}
     localRequire.cache = cache
     // 设计遗留问题(
     return {
       require: localRequire,
       subModule: write, write: write,
-      run: () => localRequire($path.join("/", package().main || "index.js")),
+      run: (args = []) => {
+        localProcess.argv = ["/rbnl.js", "."].concat(args)
+        return localRequire($path.join("/", package().main || "index.js"))
+      },
       content: pkg,
       share, package, shareCache: share,
+      process: localProcess, realpath: getPath
     }
     function package(dir = "/") {
       var path = $path.join(dir, "package.json")
@@ -51,9 +55,9 @@
       var dirname = $path.dirname(path)
       var require = (name) => localRequire(name, dirname)
       require.cache = cache;
-      (function(__dirname, __pathname, require, module, exports) {
+      (function(__dirname, __pathname, require, module, exports, process) {
         eval(code)
-      })(dirname, path, require, module, module.exports)
+      })(dirname, path, require, module, module.exports, localProcess)
       return cache[path]
     }
     function load(path) {
