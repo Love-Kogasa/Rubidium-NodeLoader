@@ -8,7 +8,7 @@
 ## Usage
 ServerLess主要由以下几部分组成  
 ServerRequest = stream.Readable + Request + URL  
-ServerResponse = stream.Writable + Response(的init对象) + WritableStream(浏览器API)(@.stream访问)  
+ServerResponse = stream.Writable + Response(的init对象)
 
 一些相关的测试可以在这里被找到 [Demo](https://rubidium.js.org/list.html)  
 TIP: 本包可以在nodejs中运行以测试哦w

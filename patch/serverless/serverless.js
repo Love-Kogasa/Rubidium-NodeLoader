@@ -24,10 +24,6 @@
     constructor(init) {
       super()
       Object.assign(this, init)
-      this.stream = new WritableStream({
-        start: chunk => (this.body = new Blob([this.body, chunk])),
-        close: () => this.emit("finish")
-      })
     }
     _write(chunk, encoding) {
       this.body = new Blob([this.body, Buffer.from(chunk, encoding)])
