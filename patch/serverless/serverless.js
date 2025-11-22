@@ -112,7 +112,7 @@
     createServer, Server, ServerRequest, ServerResponse, localFetch, fetch: localFetch, netstack, createBlobURL
   }
   
-  if(!window) {
+  if(!globalThis.window) {
     module.exports = exports
   } else {
     require.browser.register({
