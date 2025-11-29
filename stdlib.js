@@ -1,4 +1,5 @@
 // This file relies on Browserify to build :)
+const fs = require("virtualfs")
 window.require.browser.register({
   path: require("path"),
   url: require("url"),
@@ -12,13 +13,14 @@ window.require.browser.register({
   string_decoder: require("string_decoder"),
   timers: require("timers"),
   console: require("console"),
-  fs: require("browserify-fs"),
   os: require("os-browserify"),
   http: require( "http-browserify" ),
   https: require( "https-browserify" ),
   zlib: require( "browserify-zlib" ),
   vm: require( "vm-browserify" ),
-  constants: require( "constants" )
+  constants: require( "constants" ),
+  fs: fs.default,
+  virtualfs: fs
 })
 window.Buffer = Buffer
 window.process = process

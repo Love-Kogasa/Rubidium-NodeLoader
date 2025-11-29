@@ -23,11 +23,11 @@
     "stdlib": "bash build.sh"
   },
   "dependencies": {
-    "browserify-fs": "^1.0.0",
     "browserify-zlib": "^0.2.0",
     "http-browserify": "^1.7.0",
     "https-browserify": "^1.0.0",
     "os-browserify": "^0.3.0",
+    "virtualfs": "^2.2.0",
     "vm-browserify": "^1.1.2"
   }
 }
