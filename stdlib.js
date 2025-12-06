@@ -2,6 +2,7 @@
 const fs = require("virtualfs")
 const console = require("console-class-browser")
 window.console.Console = console.Console
+
 window.require.browser.register({
   path: require("path"),
   url: require("url"),
@@ -25,8 +26,13 @@ window.require.browser.register({
   fs: fs.default,
   virtualfs: fs
 })
+
 window.Buffer = Buffer
 window.process = process
-window.process.stdout = console.stdout
-window.process.stderr = console.stderr
+Object.assign(process, {
+  stdout: console.stdout, stderr: console.stderr,
+  cwd: () => fs.default.getCwd(),
+  chdir: path => fs.default.chdir(path),
+  umask: mask => fs.default.setUmask(mask)
+})
 window.global = globalThis
